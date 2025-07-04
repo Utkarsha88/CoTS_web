@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(240, 6%, 6%);
+  --foreground: hsl(0, 0%, 95%);
+  --muted: hsl(240, 5%, 20%);
+  --muted-foreground: hsl(240, 5%, 65%);
+  --popover: hsl(240, 6%, 6%);
+  --popover-foreground: hsl(0, 0%, 95%);
+  --card: hsl(240, 5%, 20%);
+  --card-foreground: hsl(0, 0%, 95%);
+  --border: hsl(240, 5%, 20%);
+  --input: hsl(240, 5%, 20%);
+  --primary: hsl(158, 67%, 36%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(240, 5%, 20%);
+  --secondary-foreground: hsl(0, 0%, 95%);
+  --accent: hsl(207, 100%, 50%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 62%, 50%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(158, 67%, 36%);
+  --radius: 0.5rem;
+  
+  /* Custom CoTS Colors */
+  --jet-black: hsl(0, 0%, 6%);
+  --teal-green: hsl(158, 67%, 36%);
+  --neon-blue: hsl(207, 100%, 50%);
+  --soft-white: hsl(0, 0%, 95%);
+  --shadow-gray: hsl(154, 10%, 20%);
+}
+
+.dark {
+  --background: hsl(240, 6%, 6%);
+  --foreground: hsl(0, 0%, 95%);
+  --muted: hsl(240, 5%, 20%);
+  --muted-foreground: hsl(240, 5%, 65%);
+  --popover: hsl(240, 6%, 6%);
+  --popover-foreground: hsl(0, 0%, 95%);
+  --card: hsl(240, 5%, 20%);
+  --card-foreground: hsl(0, 0%, 95%);
+  --border: hsl(240, 5%, 20%);
+  --input: hsl(240, 5%, 20%);
+  --primary: hsl(158, 67%, 36%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(240, 5%, 20%);
+  --secondary-foreground: hsl(0, 0%, 95%);
+  --accent: hsl(207, 100%, 50%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(0, 62%, 50%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(158, 67%, 36%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, hsl(240, 6%, 6%) 0%, hsl(240, 20%, 11%) 50%, hsl(220, 30%, 14%) 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .glassmorphism {
+    @apply backdrop-blur-lg bg-gradient-to-br from-white/10 to-white/5 border border-white/20 shadow-2xl;
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 20px hsla(207, 100%, 50%, 0.3);
+  }
+  
+  .teal-glow {
+    box-shadow: 0 0 20px hsla(158, 67%, 36%, 0.3);
+  }
+  
+  .carousel-container {
+    perspective: 1000px;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .carousel-slide {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+    border-radius: 15px;
+    overflow: hidden;
+    left: 50%;
+    top: 50%;
+    transform-origin: center;
+  }
+  
+  .carousel-slide.active {
+    transform: translate(-50%, -50%) scale(1.2) rotateY(0deg);
+    z-index: 3;
+  }
+  
+  .carousel-slide.prev {
+    transform: translate(-50%, -50%) translateX(-150px) scale(0.8) rotateY(45deg);
+    z-index: 2;
+  }
+  
+  .carousel-slide.next {
+    transform: translate(-50%, -50%) translateX(150px) scale(0.8) rotateY(-45deg);
+    z-index: 2;
+  }
+  
+  .carousel-slide.hidden {
+    transform: translate(-50%, -50%) translateX(-300px) scale(0.6) rotateY(90deg);
+    opacity: 0;
+    z-index: 1;
+  }
+  
+  .carousel-slide.hidden.right {
+    transform: translate(-50%, -50%) translateX(300px) scale(0.6) rotateY(-90deg);
+  }
+  
+  .project-card {
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-10px) rotateX(5deg);
+  }
+  
+  .timeline-item {
+    position: relative;
+    padding-left: 3rem;
+  }
+  
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, hsl(158, 67%, 36%), hsl(207, 100%, 50%));
+  }
+  
+  .timeline-item::after {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 1rem;
+    width: 14px;
+    height: 14px;
+    background: hsl(158, 67%, 36%);
+    border-radius: 50%;
+    border: 3px solid hsl(240, 6%, 6%);
+  }
+  
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .masonry-item:hover {
+    transform: scale(1.05) translateZ(10px);
+  }
+  
+  @media (max-width: 768px) {
+    .carousel-container {
+      height: 250px;
+    }
+    
+    .carousel-slide {
+      width: 200px;
+      height: 150px;
+    }
+    
+    .carousel-slide.prev {
+      transform: translate(-50%, -50%) translateX(-100px) scale(0.7) rotateY(30deg);
+    }
+    
+    .carousel-slide.next {
+      transform: translate(-50%, -50%) translateX(100px) scale(0.7) rotateY(-30deg);
+    }
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent;
+  }
+  
+  .bg-jet-black {
+    background-color: hsl(0, 0%, 6%);
+  }
+  
+  .bg-teal-green {
+    background-color: hsl(158, 67%, 36%);
+  }
+  
+  .bg-neon-blue {
+    background-color: hsl(207, 100%, 50%);
+  }
+  
+  .bg-soft-white {
+    background-color: hsl(0, 0%, 95%);
+  }
+  
+  .bg-shadow-gray {
+    background-color: hsl(154, 10%, 20%);
+  }
+  
+  .text-jet-black {
+    color: hsl(0, 0%, 6%);
+  }
+  
+  .text-teal-green {
+    color: hsl(158, 67%, 36%);
+  }
+  
+  .text-neon-blue {
+    color: hsl(207, 100%, 50%);
+  }
+  
+  .text-soft-white {
+    color: hsl(0, 0%, 95%);
+  }
+  
+  .text-shadow-gray {
+    color: hsl(154, 10%, 20%);
+  }
+}
